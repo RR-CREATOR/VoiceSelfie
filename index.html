@@ -1,0 +1,183 @@
+<html>
+    <head>
+        <title>My Selfie App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        <style>
+            body {
+                background-color: #f9f9fb;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                color: #333;
+                padding-top: 20px;
+            }
+
+            .container {
+                max-width: 900px;
+                margin: auto;
+                background: #ffffff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px; /* Added margin at the bottom */
+            }
+
+            h1 {
+                color: #4CAF50;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            h4 {
+                color: #ff5733;
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            #startbutton {
+                width: 60%;
+                font-size: 16px;
+                margin-top: 15px;
+                padding: 10px;
+                transition: all 0.3s ease;
+            }
+
+            #startbutton:hover {
+                background-color: #008CBA;
+                color: white;
+                transform: scale(1.05);
+            }
+
+            #downloadbutton, #removebutton {
+                font-size: 14px;
+                padding: 10px 20px;
+                margin: 10px;
+                transition: all 0.3s ease;
+            }
+
+            #downloadbutton:hover, #removebutton:hover {
+                transform: scale(1.05);
+            }
+
+            #downloadbutton {
+                background-color: #28a745;
+                color: white;
+            }
+
+            #removebutton {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            #textbox {
+                width: 80%;
+                margin: 10px auto;
+            }
+
+            #camera, #photo {
+                width: 100%;
+                height: auto;
+                border: 2px solid #ddd;
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                background: #fff;
+            }
+
+            #video, #canvas {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+
+            .webcam-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .webcam, .result {
+                flex: 1;
+                text-align: center;
+            }
+
+            .result {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button-row {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            hr {
+                border-top: 2px solid #4CAF50;
+                width: 80%;
+                margin: 20px auto;
+            }
+
+            @media (max-width: 768px) {
+                .webcam-container {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                #startbutton, #downloadbutton, #removebutton {
+                    width: 80%;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <center>
+                <h1>Voice Selfie App</h1>
+                <hr>
+                <h4>Please press "Allow" when prompted to enable your webcam and microphone.</h4>
+                <h3>Say "Take My Selfie"</h3>
+                <div class="form-group">
+                    <label>Your voice output:</label>
+                    <textarea class="form-control" id="textbox" readonly="true" placeholder="Your voice command will appear here..."></textarea>
+                </div>
+
+                <button class="btn btn-primary" onclick="start()" id="startbutton">Start</button>
+                <p>Click the Start button to begin</p>
+            </center>
+
+            <div class="webcam-container">
+                
+                <div class="webcam">
+                    <label>Your Webcam:</label>
+                    <canvas id="canvas"></canvas>
+                    <div id="camera">
+                        <video id="video" autoplay></video>
+                    </div>
+                </div>
+
+                
+                <div class="result">
+                    <label>Your Selfie:</label>
+                    <img id="photo" alt="Your selfie will appear here">
+                    <div class="button-row">
+                        <button id="downloadbutton" class="btn" onclick="download()">Download Selfie</button>
+                        <button id="removebutton" class="btn" onclick="clearphoto()">Remove Photo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+        <script src="FileSaver.min.js"></script>
+    </body>
+</html>
